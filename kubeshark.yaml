@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/version: "53.2.5"
     app.kubernetes.io/managed-by: Helm
   name: kubeshark-hub-network-policy
-  namespace: default
+  namespace: kubeshark-devendra
 spec:
   podSelector:
     matchLabels:
@@ -40,7 +40,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
   annotations:
   name: kubeshark-front-network-policy
-  namespace: default
+  namespace: kubeshark-devendra
 spec:
   podSelector:
     matchLabels:
@@ -67,7 +67,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
   annotations:
   name: kubeshark-dex-network-policy
-  namespace: default
+  namespace: kubeshark-devendra
 spec:
   podSelector:
     matchLabels:
@@ -94,7 +94,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
   annotations:
   name: kubeshark-worker-network-policy
-  namespace: default
+  namespace: kubeshark-devendra
 spec:
   podSelector:
     matchLabels:
@@ -122,14 +122,14 @@ metadata:
     app.kubernetes.io/version: "53.2.5"
     app.kubernetes.io/managed-by: Helm
   name: kubeshark-service-account
-  namespace: default
+  namespace: kubeshark-devendra
 ---
 # Source: kubeshark/templates/13-secret.yaml
 kind: Secret
 apiVersion: v1
 metadata:
   name: kubeshark-secret
-  namespace: default
+  namespace: kubeshark-devendra
   labels:
     app.kubeshark.com/app: hub
     helm.sh/chart: kubeshark-53.2.5
@@ -148,7 +148,7 @@ kind: Secret
 apiVersion: v1
 metadata:
   name: kubeshark-saml-x509-crt-secret
-  namespace: default
+  namespace: kubeshark-devendra
   labels:
     app.kubeshark.com/app: hub
     helm.sh/chart: kubeshark-53.2.5
@@ -164,7 +164,7 @@ kind: Secret
 apiVersion: v1
 metadata:
   name: kubeshark-saml-x509-key-secret
-  namespace: default
+  namespace: kubeshark-devendra
   labels:
     app.kubeshark.com/app: hub
     helm.sh/chart: kubeshark-53.2.5
@@ -180,7 +180,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: kubeshark-nginx-config-map
-  namespace: default
+  namespace: kubeshark-devendra
   labels:
     helm.sh/chart: kubeshark-53.2.5
     app.kubernetes.io/name: kubeshark
@@ -249,7 +249,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: kubeshark-config-map
-  namespace: default
+  namespace: kubeshark-devendra
   labels:
     app.kubeshark.com/app: hub
     helm.sh/chart: kubeshark-53.2.5
@@ -318,7 +318,7 @@ metadata:
     app.kubernetes.io/version: "53.2.5"
     app.kubernetes.io/managed-by: Helm
   name: kubeshark-cluster-role-default
-  namespace: default
+  namespace: kubeshark-devendra
 rules:
   - apiGroups:
       - ""
@@ -365,7 +365,7 @@ metadata:
     app.kubernetes.io/version: "53.2.5"
     app.kubernetes.io/managed-by: Helm
   name: kubeshark-cluster-role-binding-default
-  namespace: default
+  namespace: kubeshark-devendra
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -373,7 +373,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: kubeshark-service-account
-    namespace: default
+    namespace: kubeshark-devendra
 ---
 # Source: kubeshark/templates/02-cluster-role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -387,7 +387,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
   annotations:
   name: kubeshark-self-config-role
-  namespace: default
+  namespace: kubeshark-devendra
 rules:
   - apiGroups:
       - ""
@@ -446,7 +446,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
   annotations:
   name: kubeshark-self-config-role-binding
-  namespace: default
+  namespace: kubeshark-devendra
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -454,7 +454,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: kubeshark-service-account
-    namespace: default
+    namespace: kubeshark-devendra
 ---
 # Source: kubeshark/templates/05-hub-service.yaml
 apiVersion: v1
@@ -468,7 +468,7 @@ metadata:
     app.kubernetes.io/version: "53.2.5"
     app.kubernetes.io/managed-by: Helm
   name: kubeshark-hub
-  namespace: default
+  namespace: kubeshark-devendra
 spec:
   ports:
     - name: kubeshark-hub
@@ -489,7 +489,7 @@ metadata:
     app.kubernetes.io/version: "53.2.5"
     app.kubernetes.io/managed-by: Helm
   name: kubeshark-front
-  namespace: default
+  namespace: kubeshark-devendra
 spec:
   ports:
     - name: kubeshark-front
@@ -513,7 +513,7 @@ metadata:
     prometheus.io/scrape: 'true'
     prometheus.io/port: '49100'
   name: kubeshark-worker-metrics
-  namespace: default
+  namespace: kubeshark-devendra
 spec:
   selector:
     app.kubeshark.com/app: worker
@@ -542,7 +542,7 @@ metadata:
     prometheus.io/scrape: 'true'
     prometheus.io/port: '9100'
   name: kubeshark-hub-metrics
-  namespace: default
+  namespace: kubeshark-devendra
 spec:
   selector:
     app.kubeshark.com/app: hub
@@ -570,7 +570,7 @@ metadata:
     app.kubernetes.io/version: "53.2.5"
     app.kubernetes.io/managed-by: Helm
   name: kubeshark-worker-daemon-set
-  namespace: default
+  namespace: kubeshark-devendra
 spec:
   selector:
     matchLabels:
@@ -811,7 +811,7 @@ metadata:
     app.kubernetes.io/version: "53.2.5"
     app.kubernetes.io/managed-by: Helm
   name: kubeshark-hub
-  namespace: default
+  namespace: kubeshark-devendra
 spec:
   replicas: 1  # Set the desired number of replicas
   selector:
@@ -942,7 +942,7 @@ metadata:
     app.kubernetes.io/version: "53.2.5"
     app.kubernetes.io/managed-by: Helm
   name: kubeshark-front
-  namespace: default
+  namespace: kubeshark-devendra
 spec:
   replicas: 1  # Set the desired number of replicas
   selector:
