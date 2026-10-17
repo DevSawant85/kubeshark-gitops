@@ -497,7 +497,7 @@ spec:
       targetPort: 8080
   selector:
     app.kubeshark.com/app: front
-  type: ClusterIP
+  type: NodePort
 ---
 # Source: kubeshark/templates/15-worker-service-metrics.yaml
 kind: Service
